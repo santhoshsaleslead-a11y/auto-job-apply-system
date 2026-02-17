@@ -1,1 +1,51 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Job Management System</title>
+<link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+
+<div class="container">
+<h2>Job Tracker & Apply System</h2>
+
+<form method="POST" action="/add_job">
+<input type="text" name="title" placeholder="Job Title" required>
+<input type="text" name="company" placeholder="Company" required>
+<input type="text" name="location" placeholder="Location" required>
+<input type="email" name="email" placeholder="HR Email" required>
+<button type="submit">Add Job</button>
+</form>
+
+<h3>Saved Jobs</h3>
+
+<table>
+<tr>
+<th>Title</th>
+<th>Company</th>
+<th>Location</th>
+<th>Email</th>
+<th>Action</th>
+</tr>
+
+{% for job in jobs %}
+<tr>
+<td>{{ job["Job Title"] }}</td>
+<td>{{ job["Company"] }}</td>
+<td>{{ job["Location"] }}</td>
+<td>{{ job["Email"] }}</td>
+<td>
+<a href="/send_mail/{{ job['Email'] }}">Send Mail</a>
+</td>
+</tr>
+{% endfor %}
+</table>
+
+<br>
+<a href="/download">Download Excel</a>
+
+</div>
+
+</body>
+</html>
 
